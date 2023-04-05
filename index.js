@@ -19,8 +19,6 @@ app.get('/', function(req, res) {
 });
 
 
-
-
 app.post('/',(req,res)=>{
     const location = req.body.name;
     res.send(location)
