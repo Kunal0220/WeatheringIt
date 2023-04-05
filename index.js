@@ -10,79 +10,56 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-// app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 
-
-
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/public/index.html');
+app.get('/', (req, res) => {
+    // const myData = { message: 'Hello from the backend!' };
+    res.render(__dirname + '/public/index');
+  });
+  
+app.post('/submit', function(req, res) {
+    const location = req.body.location;
+    // console.log(location)
+    getData(location)
+    res.redirect('/')
 });
 
+async function getData(location) {
+    try {
+        const response = await axios.get(`https://api.weatherapi.com/v1/current.json?key=${process.env.API_KEY}&q=${location}&aqi=yes`);
+        const data = response.data;
+        // console.log('API response:', data);
 
-app.post('/',(req,res)=>{
-    const location = req.body.name;
-    res.send(location)
-    res.send(getData(location))
-    console.log(getData(location))
-    res.end()
-})
-
-const getData = async(location)=>{
-    // var location = 'Bengaluru'
-    var link = `https://api.weatherapi.com/v1/current.json?key=${process.env.API_KEY}&q=${location}&aqi=yes`
+        const temperature = data.current.temp_c
+        const wind = data.current.wind_kph
+        const humidity = data.current.humidity
+        const visibility = data.current.vis_km
+        
+        console.log('wind ' + wind)
+        console.log('temperature '+ temperature)
+        console.log('visibility '+visibility)
+        console.log('humidity '+humidity)
+    }
     
-    let res = await axios.get(link);
-    
-    let data = res.data;
-    
-    return(data);
-    
+    catch (error) {
+        console.error('API error:', error);
+    }
 }
+
 
 app.listen(PORT , ()=>{
     console.log(`App is running on PORT ${PORT}`)
 })
-})
-
-=======
-const PORT = process.env.PORT
-
-app.use(bodyParser.urlencoded({ extended: true })); 
-app.use(bodyParser.json());
-app.use(express.static('public'));
-
-// app.set('view engine', 'ejs');
 
 
-
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/public/index.html');
-});
-
-
-
-
-app.post('/',(req,res)=>{
-    const location = req.body.name;
-    res.send(location)
-    res.send(getData(location))
-    console.log(getData(location))
-    res.end()
-})
-
-const getData = async(location)=>{
-    // var location = 'Bengaluru'
-    var link = `https://api.weatherapi.com/v1/current.json?key=${process.env.API_KEY}&q=${location}&aqi=yes`
+// const d2 = async(location)=>{
+//     // var location = 'Bengaluru'
+//     var link = `https://api.weatherapi.com/v1/current.json?key=${process.env.API_KEY}&q=${location}&aqi=yes`
     
-    let res = await axios.get(link);
+//     let res = await axios.get(link);
     
-    let data = res.data;
+//     let data = res.data;
     
-    return(data);
+//     return(data);
     
-}
->>>>>>> node
-
-app.listen(PORT , ()=>{
-    console.log(`App is running on PORT ${PORT}`)
-})
+// }

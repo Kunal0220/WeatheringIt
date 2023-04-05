@@ -10,10 +10,14 @@
 <body>
     <div class="container">
         <div class="main-body">
-            <div class="search">
-                <input class="search-input" type="text" placeholder="Enter the place" spellcheck="false">
-                <button class="search-btn"><img class="search-img" src="Images/search.png" alt=""></button>
-            </div>
+
+            <form action="/submit" method="POST" class="search">
+
+                    <input class="search-input"  name="location" type="text" placeholder="Enter the place" spellcheck="false">
+                    <button class="search-btn" value="submit" type="submit"><img class="search-img" src="Images/search.png" alt=""></button>
+
+            </form>
+            
             <div class="weather-section">
                 <h1 class="city">India</h1>
                 <img class="weather-icon" src="Images/sunny.png" alt="weather-image">
@@ -39,5 +43,6 @@
             </div>
         </div>
     </div>
+    <script src="../index.js"></script>
 </body>
 </html>
