@@ -30,6 +30,7 @@ app.post('/submit', function(req, res) {
             const humidity = data.current.humidity
             const visibility = data.current.vis_km
             const city = data.location.name
+            const icon = data.current.condition.icon
             
             const delivery = [ city,temperature , wind , humidity , visibility  ]
             const dataa = {
@@ -37,7 +38,8 @@ app.post('/submit', function(req, res) {
                 temperature: temperature,
                 wind: wind,
                 humidity: humidity,
-                visibility:visibility
+                visibility:visibility,
+                icon:icon
               };
             res.render(__dirname + '/views/response', {dataa: dataa});
         
