@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatheringIt</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-body">
+
+            <form action="/submit" method="POST" class="search">
+
+                    <input class="search-input"  name="location" type="text" placeholder="Enter the place" spellcheck="false">
+                    <button class="search-btn" value="submit" type="submit"><img class="search-img" src="Images/search.png" alt=""></button>
+
+            </form>
+            
+            <div class="weather-section">
+                <h1 class="city" id="city">Bengaluru</h1>
+                <img class="weather-icon" src="Images/sunny.png" alt="weather-image">
+                <h1 class="temperature">28°C</h1>
+                <div class="weather-subsection">
+                    <div class="subsec-1">
+                        <img class="subsec-1-img" src="Images/010-wind-and-cloud.png" alt="humidity-img">
+                        <h2 class="subsec-1-h2">2km/hr</h2>
+                        <p class="subsec-1-p">Wind</p>
+                    </div>
+                    <div class="subsec-2">
+                        <img  class="subsec-2-img"src="Images/eye.png" alt="visibility-img">
+                        <h2 class="subsec-2-h2">80%</h2>
+                        <p class="subsec-2-p">Humidity</p>
+                    </div>
+                    <div class="subsec-3">
+                        <img  class="subsec-3-img" src="Images/012-humidity-1.png" alt="visibility-img">
+                        <h2 class="subsec-1-h2">1.6km</h2>
+                        <p class="subsec-1-p">Visibility</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../index.js"></script>
+</body>
+</html>
